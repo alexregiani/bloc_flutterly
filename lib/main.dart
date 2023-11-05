@@ -41,9 +41,15 @@ class HomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: const [
-                  FloatingActionButton(onPressed: null),
+                  FloatingActionButton(
+                    onPressed: null,
+                    child: Icon(Icons.exposure_minus_1),
+                  ),
                   Gap(10),
-                  FloatingActionButton(onPressed: null),
+                  FloatingActionButton(
+                    onPressed: null,
+                    child: Icon(Icons.plus_one),
+                  ),
                 ],
               ),
             ),
