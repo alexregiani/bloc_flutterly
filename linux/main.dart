@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
             child: Center(
                 child: Text(
               '${BlocProvider.of<CounterCubit>(context).state.counter}',
-              style: const TextStyle(fontSize: 150),
+              style: const TextStyle(fontSize: 100),
             )),
           ),
           Padding(
