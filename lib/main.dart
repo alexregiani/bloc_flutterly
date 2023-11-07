@@ -5,12 +5,14 @@ import 'package:gap/gap.dart';
 
 void main() {
   runApp(
-    const MyApp(),
+    MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final CounterCubit counterCubit = CounterCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class HomePage extends StatelessWidget {
                   ),
                   const Gap(10),
                   FloatingActionButton(
-                    onPressed: BlocProvider.of<CounterCubit>(context, listen: true).increment,
+                    onPressed: BlocProvider.of<CounterCubit>(context).increment,
                     child: const Icon(Icons.plus_one),
                   ),
                 ],

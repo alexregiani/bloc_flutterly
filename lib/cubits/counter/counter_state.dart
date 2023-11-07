@@ -3,10 +3,10 @@ part of 'counter_cubit.dart';
 class CounterState extends Equatable {
   final int counter;
 
-  CounterState({required this.counter});
+  const CounterState({required this.counter});
 
   factory CounterState.initial() {
-    return CounterState(counter: 0);
+    return const CounterState(counter: 0);
   }
 
   @override
