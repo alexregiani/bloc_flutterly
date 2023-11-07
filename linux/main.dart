@@ -47,12 +47,12 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   FloatingActionButton(
-                    onPressed: BlocProvider.of<CounterCubit>(context).decrement,
+                    onPressed: BlocProvider.of<CounterCubit>(context, listen: true).decrement,
                     child: const Icon(Icons.exposure_minus_1),
                   ),
                   const Gap(10),
                   FloatingActionButton(
-                    onPressed: BlocProvider.of<CounterCubit>(context).increment,
+                    onPressed: BlocProvider.of<CounterCubit>(context, listen: true).increment,
                     child: const Icon(Icons.plus_one),
                   ),
                 ],
