@@ -1,4 +1,6 @@
+import 'package:bloc_flutterly/cubits/counter/counter_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 void main() {
@@ -12,8 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return BlocProvider<CounterCubit>(
+      create: (context) => CounterCubit(),
+      child: const MaterialApp(
+        home: HomePage(),
+      ),
     );
   }
 }
@@ -27,11 +32,11 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Expanded(
+          Expanded(
             child: Center(
                 child: Text(
-              '0',
-              style: TextStyle(fontSize: 50),
+              '${BlocProvider.of<CounterCubit>(context).state.counter}',
+              style: const TextStyle(fontSize: 50),
             )),
           ),
           Padding(
@@ -40,15 +45,15 @@ class HomePage extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
+                children: [
                   FloatingActionButton(
-                    onPressed: null,
-                    child: Icon(Icons.exposure_minus_1),
+                    onPressed: BlocProvider.of<CounterCubit>(context, listen: true).decrement,
+                    child: const Icon(Icons.exposure_minus_1),
                   ),
-                  Gap(10),
+                  const Gap(10),
                   FloatingActionButton(
-                    onPressed: null,
-                    child: Icon(Icons.plus_one),
+                    onPressed: BlocProvider.of<CounterCubit>(context, listen: true).increment,
+                    child: const Icon(Icons.plus_one),
                   ),
                 ],
               ),
