@@ -5,14 +5,12 @@ import 'package:gap/gap.dart';
 
 void main() {
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final CounterCubit counterCubit = CounterCubit();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
