@@ -5,21 +5,19 @@ import 'package:gap/gap.dart';
 
 void main() {
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final CounterCubit counterCubit = CounterCubit();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CounterCubit>(
-      create: (context) => CounterCubit(),
-      child: const MaterialApp(
-        home: HomePage(),
+    return MaterialApp(
+      home: BlocProvider(
+        create: (context) => CounterCubit(),
+        child: HomePage(),
       ),
     );
   }
@@ -35,10 +33,13 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: Center(
-                child: Text(
-              '${BlocProvider.of<CounterCubit>(context).state.counter}',
-              style: const TextStyle(fontSize: 100),
+            child: Center(child: BlocBuilder<CounterCubit, CounterState>(
+              builder: (context, state) {
+                return Text(
+                  '${state.counter}',
+                  style: const TextStyle(fontSize: 100),
+                );
+              },
             )),
           ),
           Padding(
@@ -49,7 +50,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   FloatingActionButton(
-                    onPressed: BlocProvider.of<CounterCubit>(context, listen: true).decrement,
+                    onPressed: BlocProvider.of<CounterCubit>(context).decrement,
                     child: const Icon(Icons.exposure_minus_1),
                   ),
                   const Gap(10),
