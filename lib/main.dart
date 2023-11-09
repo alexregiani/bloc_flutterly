@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<CounterCubit, CounterState>(
       listener: (context, state) {
-        if (state.counter == 3) {
+        if (state.counter == 4) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Congratulations 3'),
