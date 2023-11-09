@@ -17,7 +17,7 @@ class CounterState extends Equatable {
 
   @override
   String toString() {
-    return 'CounterState counter: $counter';
+    return 'counter: $counter';
   }
 
   CounterState copyWith({int? counter}) {
