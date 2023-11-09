@@ -5,7 +5,10 @@ class CounterState extends Equatable {
 
   const CounterState({required this.counter});
 
-  factory CounterState.initial() {
+  factory CounterState.initial({required int counter}) {
+    if (counter == 0) {
+      print('counter 0 yei');
+    }
     return const CounterState(counter: 0);
   }
 
