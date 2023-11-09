@@ -50,10 +50,13 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              child: Center(
-                  child: Text(
-                '${BlocProvider.of<CounterCubit>(context).state.counter}',
-                style: const TextStyle(fontSize: 100),
+              child: Center(child: BlocBuilder<CounterCubit, CounterState>(
+                builder: (context, state) {
+                  return Text(
+                    '${state.counter}',
+                    style: const TextStyle(fontSize: 100),
+                  );
+                },
               )),
             ),
             Padding(
@@ -65,13 +68,13 @@ class HomePage extends StatelessWidget {
                   children: [
                     FloatingActionButton(
                       heroTag: 'decrement',
-                      onPressed: BlocProvider.of<CounterCubit>(context).decrement,
+                      onPressed: BlocProvider.of<CounterCubit>(context, listen: true).decrement,
                       child: const Icon(Icons.exposure_minus_1),
                     ),
                     const Gap(10),
                     FloatingActionButton(
                       heroTag: 'increment',
-                      onPressed: BlocProvider.of<CounterCubit>(context).increment,
+                      onPressed: BlocProvider.of<CounterCubit>(context, listen: true).increment,
                       child: const Icon(Icons.plus_one),
                     ),
                   ],
