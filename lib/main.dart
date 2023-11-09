@@ -68,13 +68,13 @@ class HomePage extends StatelessWidget {
                   children: [
                     FloatingActionButton(
                       heroTag: 'decrement',
-                      onPressed: BlocProvider.of<CounterCubit>(context, listen: false).decrement,
+                      onPressed: context.read<CounterCubit>().decrement,
                       child: const Icon(Icons.exposure_minus_1),
                     ),
                     const Gap(10),
                     FloatingActionButton(
                       heroTag: 'increment',
-                      onPressed: BlocProvider.of<CounterCubit>(context, listen: false).increment,
+                      onPressed: BlocProvider.of<CounterCubit>(context).increment,
                       child: const Icon(Icons.plus_one),
                     ),
                   ],
