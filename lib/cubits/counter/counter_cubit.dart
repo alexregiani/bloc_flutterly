@@ -8,17 +8,11 @@ class CounterCubit extends Cubit<CounterState> {
 
   void increment() {
     print('$state');
-    // print('counter state increment : $state');
-
     emit(state.copyWith(counter: state.counter + 1));
   }
 
   void decrement() {
-
     print('$state');
-
-    // print('counter state decrement : $state');
-
     emit(state.copyWith(counter: state.counter - 1));
   }
 }
