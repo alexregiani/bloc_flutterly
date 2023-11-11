@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
         listener: (context, state) {
           if (state.counter == 10) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
+              const SnackBar(
                 content: Text('congratulations 10'),
               ),
             );
