@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:bloc_flutterly/blocs/theme_bloc/theme_state.dart';
+import 'package:bloc_flutterly/blocs/theme_bloc/theme_state_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-part 'theme_event.dart';
+part 'theme_event_bloc.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeState.initial()) {

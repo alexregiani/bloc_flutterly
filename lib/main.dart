@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:bloc_flutterly/blocs/theme_bloc/theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'blocs/theme_bloc/theme_state.dart';
+import 'cubits/theme_cubits/theme_cubit.dart';
+import 'cubits/theme_cubits/theme_state.dart';
 
 //
 void main() {
@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ThemeBloc>(
-      create: (context) => ThemeBloc(),
-      child: BlocBuilder<ThemeBloc, ThemeState>(
+    return BlocProvider<ThemeCubit>(
+      create: (context) => ThemeCubit(),
+      child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           return MaterialApp(
             theme: state.themeType == ThemeType.light ? ThemeData.light() : ThemeData.dark(),
@@ -46,8 +46,8 @@ class HomePage extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             final int randInt = Random().nextInt(10);
-            print('random number $randInt');
-            BlocProvider.of<ThemeBloc>(context).add(ChangeThemeEvent(randInt: randInt));
+            // print('random number $randInt');
+            BlocProvider.of<ThemeCubit>(context).themeChange(randInt);
           },
           child: const Text(style: TextStyle(fontSize: 30), 'change theme'),
         ),
