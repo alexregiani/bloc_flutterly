@@ -11,6 +11,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  final double pricePlaceholder = 30;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -23,7 +25,11 @@ class MyApp extends StatelessWidget {
             body: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
-                return CardItem();
+                return CardItem(
+                    title: 'Product name',
+                    price: pricePlaceholder,
+                    description: 'asdasdasdasdasd',
+                    image: 'assets/images/pc.png');
               },
             )
             // SizedBox(width: 200, height: 270, child: CardItem()),

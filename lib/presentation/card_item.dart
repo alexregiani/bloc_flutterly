@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CardItem extends StatelessWidget {
-  const CardItem({super.key});
+  const CardItem({required this.title, required this.price, required this.description, required this.image, super.key});
+
+  final String title;
+  final double price;
+  final String description;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -12,20 +17,28 @@ class CardItem extends StatelessWidget {
         elevation: 10,
         child: Column(
           children: [
-            Image.asset('assets/images/pc.png'),
-            const Text(style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15), 'Product name'),
-            const Padding(
+            Image.asset(image),
+            Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  'descrition asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd'),
+                description,
+                textAlign: TextAlign.start,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Text(style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), '13,99'),
+                child: Text(
+                  price.toString(),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],
