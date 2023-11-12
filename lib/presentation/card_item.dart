@@ -12,11 +12,7 @@ class CardItem extends StatelessWidget {
         elevation: 10,
         child: Column(
           children: [
-            SizedBox(
-              height: 150,
-              width: 150,
-              child: Image.asset('assets/images/pc.png'),
-            ),
+            Image.asset('assets/images/pc.png'),
             const Text(style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15), 'Product name'),
             const Padding(
               padding: EdgeInsets.all(8.0),
@@ -29,7 +25,7 @@ class CardItem extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Text(style: TextStyle(fontWeight: FontWeight.bold), '13,99'),
+                child: Text(style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), '13,99'),
               ),
             ),
           ],
