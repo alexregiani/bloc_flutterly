@@ -8,9 +8,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final double pricePlaceholder = 30;
 
   @override
@@ -22,14 +27,25 @@ class MyApp extends StatelessWidget {
             appBar: AppBar(
               title: Text('Cubit'),
             ),
-            body: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return CardItem(
-                    title: 'Product name',
-                    price: pricePlaceholder,
-                    description: 'asdasdasdasdasd',
-                    image: 'assets/images/pc.png');
+            body: BlocBuilder<ItemCubit, ItemState>(
+              builder: (context, state) {
+                if (state is ItemFetchSuccess) {
+                  return ListView.builder(
+                    itemCount: state.items.length,
+                    itemBuilder: (context, index) {
+                      return CardItem(
+                        title: state.items[index].title,
+                        price: state.items[index].price,
+                        description: state.items[index].description,
+                        image: state.items[index].image,
+                      );
+                    },
+                  );
+                } else if (state is ItemInitial) {
+                  return CircularProgressIndicator();
+                } else {
+                  return Text('error');
+                }
               },
             )
             // SizedBox(width: 200, height: 270, child: CardItem()),
