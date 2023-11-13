@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
@@ -10,13 +12,12 @@ class StoreItem {
   final String image;
   final Rating rating;
 
-  StoreItem(
-      {required this.title,
-      required this.price,
-      required this.description,
-      required this.category,
-      required this.image,
-      required this.rating});
+  StoreItem({required this.title,
+    required this.price,
+    required this.description,
+    required this.category,
+    required this.image,
+    required this.rating});
 
   factory StoreItem.fromJson(Map<String, dynamic> json) {
     return StoreItem(
@@ -47,22 +48,28 @@ class Rating {
 
 class ApiNetwork {
   Future<List<StoreItem>> getItems() async {
-    final response = await http.get(Uri.parse('https://fakestoreapi.com/products'));
+    try {
+      final response = await http.get(Uri.parse('https://fakestoreapi.com/products'));
 
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      final List<StoreItem> items = [];
-      for (var i = 0; i < json.length; i++) {
-        final entry = json[i];
-        items.add(StoreItem.fromJson(entry));
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
+        final List<StoreItem> items = [];
+        for (var i = 0; i < json.length; i++) {
+          final entry = json[i];
+          items.add(StoreItem.fromJson(entry));
+        }
+        return items;
+      } else if (response.statusCode == 400) {
+        throw Exception('Client side error (400)');
+      } else if (response.statusCode == 500) {
+        throw Exception('Server side error (500)');
+      } else {
+        throw Exception('unknown error ${response.statusCode}');
       }
-      return items;
-    } else if (response.statusCode == 400) {
-      throw Exception('Client side error (400)');
-    } else if (response.statusCode == 500) {
-      throw Exception('Server side error (500)');
-    } else {
-      throw Exception('unknown error ${response.statusCode}');
+    } on SocketException catch (e) {
+      throw Exception('Network Error $e');
+    } on TimeoutException catch (e) {
+      throw Exception('Network Error $e');
     }
   }
 }
