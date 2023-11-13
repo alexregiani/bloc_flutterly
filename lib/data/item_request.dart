@@ -57,8 +57,12 @@ class ApiNetwork {
         items.add(StoreItem.fromJson(entry));
       }
       return items;
+    } else if (response.statusCode == 400) {
+      throw Exception('Client side error (400)');
+    } else if (response.statusCode == 500) {
+      throw Exception('Server side error (500)');
     } else {
-      throw Exception('error');
+      throw Exception('unknown error ${response.statusCode}');
     }
   }
 }
