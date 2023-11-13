@@ -12,6 +12,6 @@ class ItemCubit extends Cubit<ItemState> {
     print('fetching items');
     final listItems = await ApiNetwork().getItems();
     // print('list items: $listItems');
-    emit(ItemFetchSuccess(items: listItems));
+    emit(const ItemFetchSuccess(items: []).copyWith(items: listItems));
   }
 }
