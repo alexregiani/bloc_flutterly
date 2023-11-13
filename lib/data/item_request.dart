@@ -12,12 +12,13 @@ class StoreItem {
   final String image;
   final Rating rating;
 
-  StoreItem({required this.title,
-    required this.price,
-    required this.description,
-    required this.category,
-    required this.image,
-    required this.rating});
+  StoreItem(
+      {required this.title,
+      required this.price,
+      required this.description,
+      required this.category,
+      required this.image,
+      required this.rating});
 
   factory StoreItem.fromJson(Map<String, dynamic> json) {
     return StoreItem(
@@ -67,8 +68,10 @@ class ApiNetwork {
         throw Exception('unknown error ${response.statusCode}');
       }
     } on SocketException catch (e) {
-      throw Exception('Network Error $e');
+      print('socket API LAYER ${e.toString()}');
+      rethrow;
     } on TimeoutException catch (e) {
+      print('Timeout API LAYER ${e.toString()}');
       throw Exception('Network Error $e');
     }
   }

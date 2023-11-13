@@ -25,3 +25,9 @@ class ItemSuccessState extends ItemState {
     );
   }
 }
+
+class ItemFailureState extends ItemState {
+  final String error;
+
+  const ItemFailureState({required this.error});
+}

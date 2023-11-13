@@ -48,6 +48,8 @@ class _MyAppState extends State<MyApp> {
                     );
                   },
                 );
+              } else if (state is ItemFailureState) {
+                return Text('Something went wrong, try again');
               } else if (state is ItemInitialState) {
                 return const CircularProgressIndicator();
               } else {
