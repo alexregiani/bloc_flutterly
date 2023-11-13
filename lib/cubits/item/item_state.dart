@@ -7,20 +7,20 @@ abstract class ItemState extends Equatable {
   List<Object> get props => [];
 }
 
-class ItemInitial extends ItemState {}
+class ItemInitialState extends ItemState {}
 
-class ItemFetchSuccess extends ItemState {
+class ItemSuccessState extends ItemState {
   final List<StoreItem> items;
 
-  const ItemFetchSuccess({required this.items});
+  const ItemSuccessState({required this.items});
 
   @override
   List<Object> get props => [items];
 
-  ItemFetchSuccess copyWith({
+  ItemSuccessState copyWith({
     List<StoreItem>? items,
   }) {
-    return ItemFetchSuccess(
+    return ItemSuccessState(
       items: items ?? this.items,
     );
   }

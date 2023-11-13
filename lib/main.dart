@@ -32,11 +32,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Cubit'),
+            title: const Text('Cubit'),
           ),
           body: BlocBuilder<ItemCubit, ItemState>(
             builder: (context, state) {
-              if (state is ItemFetchSuccess) {
+              if (state is ItemSuccessState) {
                 return ListView.builder(
                   itemCount: state.items.length,
                   itemBuilder: (context, index) {
@@ -48,10 +48,10 @@ class _MyAppState extends State<MyApp> {
                     );
                   },
                 );
-              } else if (state is ItemInitial) {
-                return CircularProgressIndicator();
+              } else if (state is ItemInitialState) {
+                return const CircularProgressIndicator();
               } else {
-                return Text('error');
+                return const Text('error');
               }
             },
           )
