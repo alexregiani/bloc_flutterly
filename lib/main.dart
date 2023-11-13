@@ -8,14 +8,9 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   final double pricePlaceholder = 30;
 
   @override
@@ -27,7 +22,8 @@ class _MyAppState extends State<MyApp> {
             appBar: AppBar(
               title: Text('Cubit'),
             ),
-            body: BlocBuilder<ItemCubit, ItemState>(
+            body: BlocConsumer<ItemCubit, ItemState>(
+              listener: (context, state) => ItemCubit(),
               builder: (context, state) {
                 if (state is ItemFetchSuccess) {
                   return ListView.builder(

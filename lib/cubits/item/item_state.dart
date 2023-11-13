@@ -15,5 +15,13 @@ class ItemFetchSuccess extends ItemState {
   const ItemFetchSuccess({required this.items});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [items];
+
+  ItemFetchSuccess copyWith({
+    List<StoreItem>? items,
+  }) {
+    return ItemFetchSuccess(
+      items: items ?? this.items,
+    );
+  }
 }

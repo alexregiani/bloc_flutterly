@@ -9,9 +9,9 @@ class ItemCubit extends Cubit<ItemState> {
   ItemCubit() : super(ItemInitial());
 
   void cardCreate() async {
+    print('fetching items');
     final listItems = await ApiNetwork().getItems();
     print('list items: $listItems');
-
-    emit(ItemFetchSuccess(items: listItems));
+    // emit(ItemFetchSuccess().copyWith(items: listItems));
   }
 }
