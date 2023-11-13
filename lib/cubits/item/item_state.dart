@@ -2,12 +2,12 @@ part of 'item_cubit.dart';
 
 abstract class ItemState extends Equatable {
   const ItemState();
-}
 
-class ItemInitial extends ItemState {
   @override
   List<Object> get props => [];
 }
+
+class ItemInitial extends ItemState {}
 
 class ItemFetchSuccess extends ItemState {
   final List<StoreItem> items;

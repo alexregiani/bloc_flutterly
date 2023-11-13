@@ -17,7 +17,7 @@ class CardItem extends StatelessWidget {
         elevation: 10,
         child: Column(
           children: [
-            Image.asset(image),
+            Image.network(image),
             Text(
               title,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
