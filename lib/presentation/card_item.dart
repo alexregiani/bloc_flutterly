@@ -20,10 +20,10 @@ class CardItem extends StatelessWidget {
             Image.network(image),
             Text(
               title,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 description,
                 textAlign: TextAlign.start,
@@ -32,12 +32,12 @@ class CardItem extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   price.toString(),
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
