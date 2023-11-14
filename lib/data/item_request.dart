@@ -61,11 +61,11 @@ class ApiNetwork {
         }
         return items;
       } else if (response.statusCode == 400) {
-        throw Exception('Client side error (400)');
+        throw CustomException(error: 'Client Side Error');
       } else if (response.statusCode == 500) {
-        throw Exception('Server side error (500)');
+        throw CustomException(error: 'Server side error');
       } else {
-        throw Exception('unknown error ${response.statusCode}');
+        throw CustomException(error: 'unknown error');
       }
     } on SocketException catch (e) {
       print('socket API LAYER ${e.toString()}');
@@ -77,8 +77,8 @@ class ApiNetwork {
   }
 }
 
-class ItemNetworkErrors implements Exception {
+class CustomException implements Exception {
   final String error;
 
-  ItemNetworkErrors({required this.error});
+  CustomException({required this.error});
 }

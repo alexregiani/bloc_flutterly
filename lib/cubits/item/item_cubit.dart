@@ -20,10 +20,12 @@ class ItemCubit extends Cubit<ItemState> {
     } catch (e) {
       print('exception type ${e.runtimeType}');
       if (e is SocketException) {
-        print('Socket CUBIT LAYER ${e.toString()}');
+        print('Socket CUBIT LAYER $e');
         emit(const ItemFailureState(error: 'no internet'));
       } else if (e is TimeoutException) {
         emit(const ItemFailureState(error: 'timeout error'));
+      } else if (e is CustomException) {
+        emit(ItemFailureState(error: '$e'));
       }
     }
   }
