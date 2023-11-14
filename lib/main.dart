@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ItemCubit>(context).cardCreate();
+    BlocProvider.of<ItemCubit>(context).itemCreate();
   }
 
   @override
@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                   },
                 );
               } else if (state is ItemFailureState) {
-                return const Text('Something went wrong, try again');
+                return Text(state.error);
               } else if (state is ItemInitialState) {
                 return const Center(child: CircularProgressIndicator());
               } else {

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -10,7 +11,7 @@ part 'item_state.dart';
 class ItemCubit extends Cubit<ItemState> {
   ItemCubit() : super(ItemInitialState());
 
-  void cardCreate() async {
+  void itemCreate() async {
     try {
       print('fetching items');
       final listItems = await ApiNetwork().getItems();
@@ -20,9 +21,9 @@ class ItemCubit extends Cubit<ItemState> {
       print('exception type ${e.runtimeType}');
       if (e is SocketException) {
         print('Socket CUBIT LAYER ${e.toString()}');
-        emit(ItemFailureState(error: 'error ${e.toString()}'));
-      } else {
-        print('test');
+        emit(const ItemFailureState(error: 'no internet'));
+      } else if (e is TimeoutException) {
+        emit(const ItemFailureState(error: 'timeout error'));
       }
     }
   }

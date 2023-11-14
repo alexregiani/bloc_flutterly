@@ -69,10 +69,16 @@ class ApiNetwork {
       }
     } on SocketException catch (e) {
       print('socket API LAYER ${e.toString()}');
-      throw Exception('');
+      rethrow;
     } on TimeoutException catch (e) {
       print('Timeout API LAYER ${e.toString()}');
-      throw Exception('Network Error $e');
+      rethrow;
     }
   }
+}
+
+class ItemNetworkErrors implements Exception {
+  final String error;
+
+  ItemNetworkErrors({required this.error});
 }
