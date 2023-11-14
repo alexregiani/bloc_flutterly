@@ -1,6 +1,7 @@
 import 'package:bloc_flutterly/presentation/card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 import 'cubits/item/item_cubit.dart';
 
@@ -38,13 +39,19 @@ class _MyAppState extends State<MyApp> {
             builder: (context, state) {
               if (state is ItemSuccessState) {
                 return ListView.builder(
+                  padding: EdgeInsets.all(15),
                   itemCount: state.items.length,
                   itemBuilder: (context, index) {
-                    return CardItem(
-                      title: state.items[index].title,
-                      price: state.items[index].price,
-                      description: state.items[index].description,
-                      image: state.items[index].image,
+                    return Column(
+                      children: [
+                        CardItem(
+                          title: state.items[index].title,
+                          price: state.items[index].price,
+                          description: state.items[index].description,
+                          image: state.items[index].image,
+                        ),
+                        Gap(10)
+                      ],
                     );
                   },
                 );
