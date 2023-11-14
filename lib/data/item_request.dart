@@ -69,7 +69,7 @@ class ApiNetwork {
       }
     } on SocketException catch (e) {
       print('socket API LAYER ${e.toString()}');
-      rethrow;
+      throw Exception('');
     } on TimeoutException catch (e) {
       print('Timeout API LAYER ${e.toString()}');
       throw Exception('Network Error $e');

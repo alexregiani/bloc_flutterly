@@ -49,9 +49,9 @@ class _MyAppState extends State<MyApp> {
                   },
                 );
               } else if (state is ItemFailureState) {
-                return Text('Something went wrong, try again');
+                return const Text('Something went wrong, try again');
               } else if (state is ItemInitialState) {
-                return const CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               } else {
                 return const Text('error');
               }

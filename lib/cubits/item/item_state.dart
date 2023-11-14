@@ -17,9 +17,7 @@ class ItemSuccessState extends ItemState {
   @override
   List<Object> get props => [items];
 
-  ItemSuccessState copyWith({
-    List<StoreItem>? items,
-  }) {
+  ItemSuccessState copyWith({List<StoreItem>? items}) {
     return ItemSuccessState(
       items: items ?? this.items,
     );
