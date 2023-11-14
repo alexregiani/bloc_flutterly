@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
             builder: (context, state) {
               if (state is ItemSuccessState) {
                 return ListView.builder(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   itemCount: state.items.length,
                   itemBuilder: (context, index) {
                     return Column(
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                           description: state.items[index].description,
                           image: state.items[index].image,
                         ),
-                        Gap(10)
+                        const Gap(10)
                       ],
                     );
                   },

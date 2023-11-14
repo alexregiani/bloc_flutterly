@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
 
 class ItemDetail extends StatelessWidget {
-  const ItemDetail({super.key});
+  const ItemDetail(
+      {super.key, required this.title, required this.price, required this.description, required this.image});
+
+  final String title;
+  final double price;
+  final String description;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset('assets/images/pc.png'),
-        const Text(style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), 'Product Name'),
-        const Padding(
-          padding: EdgeInsets.all(12.0),
-          child: Text(
-              'asdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasdaasdasdasdasdasdasdasdasdasdasdasda'),
+        Image.network(image),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
-        const Padding(
-          padding: EdgeInsets.all(12.0),
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text(description),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(12.0),
           child: Align(
-              alignment: Alignment.bottomRight,
-              child: Text(style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), '13,99')),
+            alignment: Alignment.bottomRight,
+            child: Text(
+              price.toString(),
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+          ),
         )
       ],
     );
