@@ -1,4 +1,5 @@
 import 'package:bloc_flutterly/presentation/card_item.dart';
+import 'package:bloc_flutterly/presentation/item_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -42,16 +43,30 @@ class _MyAppState extends State<MyApp> {
                   padding: const EdgeInsets.all(15),
                   itemCount: state.items.length,
                   itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        CardItem(
-                          title: state.items[index].title,
-                          price: state.items[index].price,
-                          description: state.items[index].description,
-                          image: state.items[index].image,
-                        ),
-                        const Gap(10)
-                      ],
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ItemDetail(
+                                title: state.items[index].title,
+                                price: state.items[index].price,
+                                description: state.items[index].description,
+                                image: state.items[index].image),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          CardItem(
+                            title: state.items[index].title,
+                            price: state.items[index].price,
+                            description: state.items[index].description,
+                            image: state.items[index].image,
+                          ),
+                          const Gap(10)
+                        ],
+                      ),
                     );
                   },
                 );

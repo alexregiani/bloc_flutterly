@@ -11,28 +11,31 @@ class ItemDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.network(image),
-        Text(
-          title,
-          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Text(description),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: Text(
-              price.toString(),
-              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          Image.network(image),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(description),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                price.toString(),
+                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
