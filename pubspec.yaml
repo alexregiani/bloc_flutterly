@@ -41,6 +41,7 @@ dependencies:
   meta: ^1.8.0
   bloc: ^8.1.2
   http: ^0.13.6
+  mockito: ^5.4.0
 
 dev_dependencies:
   flutter_test:

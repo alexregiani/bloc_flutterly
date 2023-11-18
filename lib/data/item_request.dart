@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class StoreItem {
   final String title;
@@ -49,9 +49,10 @@ class Rating {
 
 class ApiNetwork {
   Future<List<StoreItem>> getItems() async {
+    final httpSimulation = HttpSimulation();
     try {
-      final response = await http.get(Uri.parse('https://fakestoreapi.com/products'));
-
+      // final response = await http.get(Uri.parse('https://fakestoreapi.com/products'));
+      final response = httpSimulation.getResponse(400);
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
         final List<StoreItem> items = [];
@@ -68,17 +69,28 @@ class ApiNetwork {
         throw CustomException(error: 'unknown error');
       }
     } on SocketException catch (e) {
-      print('socket API LAYER ${e.toString()}');
+      print('socket API LAYER $e');
       rethrow;
     } on TimeoutException catch (e) {
-      print('Timeout API LAYER ${e.toString()}');
+      print('Timeout API LAYER $e');
       rethrow;
     }
   }
 }
 
+class HttpSimulation {
+  Response getResponse(int errorCode) {
+    return Response('', 500);
+  }
+}
+
 class CustomException implements Exception {
   final String error;
+
+  @override
+  String toString() {
+    return error;
+  }
 
   CustomException({required this.error});
 }
