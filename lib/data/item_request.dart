@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 class StoreItem {
   final String title;
@@ -49,48 +49,50 @@ class Rating {
 
 class ApiNetwork {
   Future<List<StoreItem>> getItems() async {
-    final httpSimulation = HttpSimulation();
+    // final httpSimulation = HttpSimulation();
+    String _url = 'https://fakestoreapi.com/products';
     try {
-      // final response = await http.get(Uri.parse('https://fakestoreapi.com/products'));
-      final response = httpSimulation.getResponse(400);
+      final response = await http.get(Uri.parse(_url));
+      // final response = httpSimulation.getResponse(400);
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
         final List<StoreItem> items = [];
-        for (var i = 0; i < json.length; i++) {
+        for (var i = 0; json.length > i; i++) {
           final entry = json[i];
           items.add(StoreItem.fromJson(entry));
         }
         return items;
       } else if (response.statusCode == 400) {
+        // print('API LAYER: ${response.statusCode}');
         throw CustomException(error: 'Client Side Error');
       } else if (response.statusCode == 500) {
         throw CustomException(error: 'Server side error');
       } else {
-        throw CustomException(error: 'unknown error');
+        throw CustomException(error: 'Unknown error');
       }
     } on SocketException catch (e) {
-      print('socket API LAYER $e');
-      rethrow;
+      print('API LAYER $e');
+      throw CustomException(error: 'no internet');
     } on TimeoutException catch (e) {
       print('Timeout API LAYER $e');
-      rethrow;
+      throw CustomException(error: 'timeout error');
     }
   }
 }
 
 class HttpSimulation {
-  Response getResponse(int errorCode) {
-    return Response('', 500);
+  http.Response getResponse(int errorCode) {
+    return http.Response('', errorCode);
   }
 }
 
 class CustomException implements Exception {
   final String error;
 
+  CustomException({required this.error});
+
   @override
   String toString() {
     return error;
   }
-
-  CustomException({required this.error});
 }

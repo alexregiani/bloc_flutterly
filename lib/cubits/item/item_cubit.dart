@@ -18,13 +18,14 @@ class ItemCubit extends Cubit<ItemState> {
       // print('list items: $listItems');
       emit(const ItemSuccessState(items: []).copyWith(items: listItems));
     } catch (e) {
-      print('exception type ${e.runtimeType}');
+      // print('exception type ${e.runtimeType}');
       if (e is SocketException) {
         print('Socket CUBIT LAYER $e');
         emit(const ItemFailureState(error: 'no internet'));
       } else if (e is TimeoutException) {
         emit(const ItemFailureState(error: 'timeout error'));
       } else if (e is CustomException) {
+        print('CUBIT LAYER: $e');
         emit(ItemFailureState(error: '$e'));
       }
     }
