@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ItemCubit>(context).itemCreate();
+    context.read<ItemCubit>().itemCreate();
   }
 
   @override

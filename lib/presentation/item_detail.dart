@@ -13,28 +13,25 @@ class ItemDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          Image.network(image),
-          Text(
-            title,
-            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text(description),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Align(
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            Flexible(flex: 1, child: Image.network(image)),
+            Text(
+              title,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            Text(description),
+            Align(
               alignment: Alignment.bottomRight,
               child: Text(
                 price.toString(),
                 style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
