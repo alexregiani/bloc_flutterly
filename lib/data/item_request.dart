@@ -71,11 +71,11 @@ class ApiNetwork {
         throw CustomException(error: 'Unknown error');
       }
     } on SocketException catch (e) {
-      print('API LAYER $e');
-      throw CustomException(error: 'no internet');
+      // print('API LAYER $e');
+      throw CustomException(error: 'No internet');
     } on TimeoutException catch (e) {
-      print('Timeout API LAYER $e');
-      throw CustomException(error: 'timeout error');
+      // print('Timeout API LAYER $e');
+      throw CustomException(error: 'Timeout error');
     }
   }
 }
