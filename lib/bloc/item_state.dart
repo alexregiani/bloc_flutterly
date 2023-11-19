@@ -1,4 +1,4 @@
-part of 'item_cubit.dart';
+part of 'item_bloc.dart';
 
 abstract class ItemState extends Equatable {
   const ItemState();

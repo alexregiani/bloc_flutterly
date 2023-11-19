@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-import 'cubits/item/item_cubit.dart';
+import 'bloc/item_bloc.dart';
 
 void main() {
   runApp(
     BlocProvider(
-      create: (context) => ItemCubit(),
+      create: (context) => ItemBloc(),
       child: const MyApp(),
     ),
   );
@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    context.read<ItemCubit>().itemCreate();
+    context.read<ItemBloc>().add(ItemFetchEvent());
   }
 
   @override
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: const Text('Cubit'),
           ),
-          body: BlocBuilder<ItemCubit, ItemState>(
+          body: BlocBuilder<ItemBloc, ItemState>(
             builder: (context, state) {
               if (state is ItemSuccessState) {
                 return ListView.builder(
