@@ -1,8 +1,8 @@
-import 'package:bloc_flutterly/cubit/color/color_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
+import 'bloc/color/color_bloc.dart';
 import 'cubit/counter/counter_cubit.dart';
 
 void main() {
@@ -25,16 +25,16 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ColorCubit(),
+          create: (context) => ColorBloc(),
         ),
         BlocProvider(
           create: (context) => CounterCubit(),
         ),
       ],
       child: MaterialApp(
-        home: BlocBuilder<ColorCubit, ColorState>(
+        home: BlocBuilder<ColorBloc, ColorState>(
           builder: (context, state) {
-            return BlocListener<ColorCubit, ColorState>(
+            return BlocListener<ColorBloc, ColorState>(
               listener: (context, state) {
                 if (state.color == Colors.red) {
                   incrementSize = 1;
@@ -54,20 +54,18 @@ class _MyAppState extends State<MyApp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                            BlocProvider.of<ColorCubit>(context).colorChange();
-                          },
+                          onPressed: () => BlocProvider.of<ColorBloc>(context).add(ColorChangeEvent()),
                           child: const Text(style: TextStyle(fontSize: 40), 'Change Color'),
                         ),
                         const Gap(20),
                         BlocBuilder<CounterCubit, CounterState>(
                           builder: (context, state) {
-                            return Text(textScaleFactor: 3, '${state.counter}');
+                            return Text(textScaleFactor: 3, '0');
                           },
                         ),
                         const Gap(20),
                         ElevatedButton(
-                          onPressed: () => BlocProvider.of<CounterCubit>(context).counterIncrease(incrementSize),
+                          onPressed: () {},
                           child: const Text(style: TextStyle(fontSize: 40), 'Increment Counter'),
                         ),
                         const Gap(20),
