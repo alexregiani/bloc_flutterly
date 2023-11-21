@@ -20,34 +20,46 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Cubit'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () => BlocProvider.of<CounterBloc>(context).add(const CounterChangeEvent()),
-                child: const Text('Increment Counter', style: TextStyle(fontSize: 40)),
-              ),
-              const Gap(10),
-              Builder(builder: (context) {
-                return ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CounterPage(),
-                        ));
-                  },
-                  child: const Text(style: TextStyle(fontSize: 40), 'Show me counter'),
-                );
-              }),
-            ],
-          ),
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cubit'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => BlocProvider.of<CounterBloc>(context).add(const CounterChangeEvent()),
+              child: const Text('Increment Counter', style: TextStyle(fontSize: 40)),
+            ),
+            const Gap(10),
+            Builder(builder: (context) {
+              return ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CounterPage(),
+                    ),
+                  );
+                },
+                child: const Text(style: TextStyle(fontSize: 40), 'Show me counter'),
+              );
+            })
+          ],
         ),
       ),
     );
