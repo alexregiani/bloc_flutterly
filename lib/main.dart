@@ -1,6 +1,7 @@
 import 'package:bloc_flutterly/counter_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 import 'bloc/counter/counter_bloc.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
                 onPressed: () => BlocProvider.of<CounterBloc>(context).add(const CounterChangeEvent()),
                 child: const Text('Increment Counter', style: TextStyle(fontSize: 40)),
               ),
-              const SizedBox(height: 20),
+              const Gap(10),
               Builder(builder: (context) {
                 return ElevatedButton(
                   onPressed: () {
