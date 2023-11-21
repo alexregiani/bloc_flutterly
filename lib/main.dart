@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 import 'bloc/color/color_bloc.dart';
-import 'cubit/counter/counter_cubit.dart';
+import 'bloc/counter/counter_bloc.dart';
 
 void main() {
   runApp(
@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
           create: (context) => ColorBloc(),
         ),
         BlocProvider(
-          create: (context) => CounterCubit(),
+          create: (context) => CounterBloc(),
         ),
       ],
       child: MaterialApp(
@@ -58,19 +58,19 @@ class _MyAppState extends State<MyApp> {
                           child: const Text(style: TextStyle(fontSize: 40), 'Change Color'),
                         ),
                         const Gap(20),
-                        BlocBuilder<CounterCubit, CounterState>(
+                        BlocBuilder<CounterBloc, CounterState>(
                           builder: (context, state) {
-                            return Text(textScaleFactor: 3, '0');
+                            return Text(textScaleFactor: 3, '${state.counter}');
                           },
                         ),
                         const Gap(20),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => context.read<CounterBloc>().add(CounterChangeEvent(incrementSize)),
                           child: const Text(style: TextStyle(fontSize: 40), 'Increment Counter'),
                         ),
                         const Gap(20),
                         ElevatedButton(
-                          onPressed: () => context.read<CounterCubit>().reset(),
+                          onPressed: () {},
                           child: const Text('reset'),
                         )
                       ],
