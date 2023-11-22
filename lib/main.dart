@@ -19,9 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
+    return MaterialApp(routes: {
+      '/': (context) => const HomePage(),
+      '/counter': (context) => const CounterPage(),
+    });
   }
 }
 
@@ -49,12 +50,7 @@ class HomePage extends StatelessWidget {
             Builder(builder: (context) {
               return ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CounterPage(),
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/counter');
                 },
                 child: const Text(style: TextStyle(fontSize: 40), 'Show me counter'),
               );
