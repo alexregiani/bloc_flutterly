@@ -6,6 +6,5 @@ abstract class ColorEvent extends Equatable {
 
 class ColorChangeEvent extends ColorEvent {
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object> get props => [];
 }

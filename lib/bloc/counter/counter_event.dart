@@ -12,3 +12,8 @@ class CounterChangeEvent extends CounterEvent {
   @override
   List<Object> get props => [counter];
 }
+
+class CounterResetEvent extends CounterEvent {
+  @override
+  List<Object> get props => [];
+}

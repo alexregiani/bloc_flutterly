@@ -7,8 +7,12 @@ part 'counter_state.dart';
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(CounterState.initial()) {
     on<CounterChangeEvent>((event, emit) {
+      // print('before change $state');
       emit(state.copyWith(state.counter + event.counter));
-      print('counter ${state.counter}');
+      // print('after change $state');
+    });
+    on<CounterResetEvent>((event, emit) {
+      emit(state.copyWith(state.counter * 0));
     });
   }
 }

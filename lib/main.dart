@@ -1,3 +1,4 @@
+import 'package:bloc_flutterly/bloc/observer/bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -6,6 +7,7 @@ import 'bloc/color/color_bloc.dart';
 import 'bloc/counter/counter_bloc.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
   runApp(
     const MyApp(),
   );
@@ -43,6 +45,8 @@ class _MyAppState extends State<MyApp> {
                   incrementSize = 10;
                 } else if (state.color == Colors.green) {
                   incrementSize = 100;
+                } else {
+                  incrementSize = 1;
                 }
               },
               child: Scaffold(
@@ -66,18 +70,18 @@ class _MyAppState extends State<MyApp> {
                         ),
                         const Gap(20),
                         ElevatedButton(
-                          onPressed: () => context.read<CounterBloc>().add(CounterChangeEvent(incrementSize)),
+                          onPressed: () => BlocProvider.of<CounterBloc>(context).add(CounterChangeEvent(incrementSize)),
                           child: const Text(style: TextStyle(fontSize: 40), 'Increment Counter'),
                         ),
                         const Gap(20),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => BlocProvider.of<CounterBloc>(context).add(CounterResetEvent()),
                           child: const Text('reset'),
                         )
                       ],
                     ),
                   ) // SizedBox(width: 200, height: 270, child: CardItem()),
-                  ),
+              ),
             );
           },
         ),
