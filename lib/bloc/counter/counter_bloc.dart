@@ -7,7 +7,7 @@ part 'counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(CounterState.initial()) {
-    on<CounterAddEvent>(_addCounter, transformer: droppable());
+    on<CounterAddEvent>(_addCounter, transformer: concurrent());
     on<CounterSubtractEvent>((event, emit) async {
       await Future.delayed(const Duration(seconds: 5));
       emit(state.copyWith(state.counter - 1));
