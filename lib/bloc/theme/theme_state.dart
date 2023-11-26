@@ -11,14 +11,10 @@ class ThemeState extends Equatable {
   });
 
   factory ThemeState.initial() {
-    return const ThemeState(darkMode: true);
+    return const ThemeState(darkMode: false);
   }
 
-  ThemeState copyWith({
-    bool? darkMode,
-  }) {
-    return ThemeState(
-      darkMode: darkMode ?? this.darkMode,
-    );
+  ThemeState copyWith({bool? darkMode}) {
+    return ThemeState(darkMode: darkMode ?? this.darkMode);
   }
 }
