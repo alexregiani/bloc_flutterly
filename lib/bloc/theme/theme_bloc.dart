@@ -7,10 +7,10 @@ part 'theme_state.dart';
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeState.initial()) {
     on<DarkThemeSwitchEvent>((event, emit) {
-      emit(ThemeState(darkMode: true));
+      emit(state.copyWith(darkMode: true));
     });
     on<LightThemeSwitchEvent>((event, emit) {
-      emit(ThemeState(darkMode: false));
+      emit(state.copyWith(darkMode: false));
     });
   }
 }
