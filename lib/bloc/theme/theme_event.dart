@@ -13,3 +13,8 @@ class LightThemeSwitchEvent extends ThemeEvent {
   @override
   List<Object> get props => [];
 }
+
+class ThemeSwitchEvent extends ThemeEvent {
+  @override
+  List<Object> get props => [];
+}

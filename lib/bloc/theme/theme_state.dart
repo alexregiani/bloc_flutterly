@@ -6,9 +6,7 @@ class ThemeState extends Equatable {
   @override
   List<Object> get props => [darkMode];
 
-  const ThemeState({
-    required this.darkMode,
-  });
+  const ThemeState({required this.darkMode});
 
   factory ThemeState.initial() {
     return const ThemeState(darkMode: false);

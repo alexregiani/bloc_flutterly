@@ -43,6 +43,7 @@ dependencies:
   http: ^0.13.6
   mockito: ^5.4.0
   bloc_concurrency: ^0.2.2
+  hydrated_bloc: ^9.1.2
 
 dev_dependencies:
   flutter_test:

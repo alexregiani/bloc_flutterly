@@ -12,5 +12,8 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     on<LightThemeSwitchEvent>((event, emit) {
       emit(state.copyWith(darkMode: false));
     });
+    on<ThemeSwitchEvent>((event, emit) {
+      emit(state.copyWith(darkMode: !state.darkMode));
+    });
   }
 }
