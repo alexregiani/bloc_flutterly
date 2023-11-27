@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return MaterialApp(
-          theme: state.darkMode ? ThemeData.dark() : ThemeData.light(),
+          theme: state.appTheme == AppTheme.light ? ThemeData.dark() : ThemeData.light(),
           home: Scaffold(
               appBar: AppBar(
                 title: const Text('Cubit'),
