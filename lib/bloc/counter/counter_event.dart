@@ -5,13 +5,20 @@ abstract class CounterEvent extends Equatable {
 }
 
 class CounterAddEvent extends CounterEvent {
-  const CounterAddEvent();
+  final int counter;
 
+  const CounterAddEvent({required this.counter});
+
+  @override
+  List<Object> get props => [counter];
+}
+
+class CounterSubtractEvent extends CounterEvent {
   @override
   List<Object> get props => [];
 }
 
-class CounterSubtractEvent extends CounterEvent {
+class CounterResetEvent extends CounterEvent {
   @override
   List<Object> get props => [];
 }
