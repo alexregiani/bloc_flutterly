@@ -6,16 +6,21 @@ class Product {
   String title;
   double price;
   String description;
+  List images;
+
+  Product({required this.title, required this.price, required this.description, required this.images});
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+        title: json['title'],
+        price: json['price'].toDouble(),
+        description: json['description'],
+        images: json['images']);
+  }
 
   @override
   String toString() {
-    return 'Product{title: $title, price: $price, description: $description}';
-  } // List<String> images;
-
-  Product({required this.title, required this.price, required this.description});
-
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(title: json['title'], price: json['price'].toDouble(), description: json['description']);
+    return 'Product{title: $title, price: $price, description: $description, images: $images}';
   }
 }
 
